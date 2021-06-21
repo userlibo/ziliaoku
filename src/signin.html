@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<!-- saved from url=(0045)http://www.knowfar.net.cn/passport/login.aspx -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>登录_通行证</title>
+<link rel="stylesheet" href="./signin_files/base.css">
+<link rel="stylesheet" href="./signin_files/css.css">
+
+<style type="text/css">
+.logErr{width: 306px;height: 26px;line-height: 26px;text-align: center;border: 1px solid #f78f8f;background-color: #f7c2c2;margin:0 auto;}
+</style>
+</head>
+<body class="Index">
+<div class="header">
+	<div class="wrap">
+		<a href="http://www.knowfar.net.cn/default.aspx" class="logo">
+    开源情报数据库
+    </a>
+        <a href="javascript:;" onclick="$ShowContactUs()" class="sign-up" style="right:110px;">联系我们</a>
+        <a href="./signup.html" class="sign-up">注册</a>
+
+	</div>
+</div>
+<!-- banner -->
+<div class="banner">
+  <div class="sign-box sign-in-box">
+    <div class="bd">
+      <h2>账号登录</h2>
+      <div>
+        <form id="userlogin_form">
+          <ul>
+            <li id="liMobileTel">
+              <input class="input" type="text" id="txtMobileTel" placeholder="请输入手机号" autocomplete="off">
+              <p class="w-tip"></p>
+            </li>
+            <li id="liUserPass">
+              <input class="input" type="password" id="txtUserPass" placeholder="密码" autocomplete="off">
+              <p class="w-tip"></p>
+            </li>
+            <li class="other">
+              <label id="checkbox" for="chkUserLoginType"> <span class="checkBox">
+              <input id="chkUserLoginType" type="checkbox" name="type" value="7">
+              </span><em>记住我</em> </label>
+              <a href="javascript:;"  class="forget">找回密码？</a> </li>
+              <!-- onclick="$(&#39;#dialogFindPassword&#39;).show()" -->
+            <li>
+              <div id="userlogin_errorinfo"></div>
+            </li>
+            <li>
+              <input type="hidden" id="txtRefer" name="txtRefer" value="http://www.knowfar.net.cn">
+              <input type="button" id="btnUserLogin" onclick="ajaxUserLogin();" class="sub2" value="登 录">
+            </li>
+          </ul>
+        </form>
+      </div>
+      
+    </div>
+  </div>
+</div>
+<!-- e banner -->
+<!-- footer -->
+<div id="footer" class="footer">
+	<div class="bottom clearfix wrap">
+        <div style="line-height: 60px;width:100%;text-align:center;color:white; ">
+            开源防务版权所有 © 2021-2022.  <a target="_blank" href="http://www.beian.miit.gov.cn/">京ICP备xxx号-1</a>
+		</div>
+	</div>
+</div>
+<!-- e footer -->
+
+<div id="dialogFindPassword" class="pop-view view4" style="display:none;">
+  <div class="container"> <i class="close" onclick="$(&#39;#dialogFindPassword&#39;).hide()"></i>
+    <form action="http://www.knowfar.net.cn/passport/login.aspx" method="">
+      <h3>验证手机</h3>
+      <ul>
+        <li id="liMobileTel0">
+          <input class="inp" id="txtMobileTel0" type="text" placeholder="请输入手机号" autocomplete="off">
+          <p class="w-tip"></p>
+        </li>
+        <li id="liMobileCode0" class="yzm">
+          <input class="inp" type="text" id="txtMobileCode0" placeholder="短信验证码" autocomplete="off">
+          <p id="getCode" class="get" onclick="ajaxGetCode()">获取手机验证码</p>
+          <p class="w-tip"></p>
+        </li>
+        <li>
+          <div id="gep_errorinfo"></div>
+        </li>
+        <li>
+          <input type="button" class="sub" value="下一步" onclick="ajaxGetPassword_Step1()">
+        </li>
+      </ul>
+    </form>
+  </div>
+</div>
+<div id="dialogChangePassword" class="pop-view view4" style="display:none;">
+  <div class="container"> <i class="close" onclick="$(&#39;#dialogChangePassword&#39;).hide();"></i>
+    <form action="http://www.knowfar.net.cn/passport/login.aspx" method="">
+      <h3>设置新密码</h3>
+      <ul>
+        <li id="liUserPass1">
+          <input class="inp" type="password" id="txtUserPass1" placeholder="请输入新密码">
+        </li>
+        <p class="w-tip"></p>
+        <li id="liUserPass2" class="yzm">
+          <input class="inp" type="password" id="txtUserPass2" placeholder="确认密码">
+          <p class="w-tip"></p>
+        </li>
+        <li>
+          <input type="button" onclick="ajaxGetPassword_Step2()" class="sub" value="确 定">
+        </li>
+      </ul>
+    </form>
+  </div>
+</div>
+
+<style type="text/css">
+    .dialog_table
+    {
+        margin-bottom: 10px;
+        width: 98%;
+        border: 1px solid #ccc;
+        border-collapse: collapse;
+        font-size: 14px;
+    }
+    .dialog_table th, .dialog_table td
+    {
+        border: 1px solid #E3E3E3;
+        padding: 6px;
+        text-align: center;
+        line-height:1.5em;
+    }
+    .dialog_table thead th
+    {
+        background: #eee;
+    }
+    .dialog_table tbody th
+    {
+        text-align: right;
+        font-weight: normal;
+    }
+    .tline
+    {
+        background: #FFFFD2;
+    }
+        .dialog_table .num
+    {
+        color: #FF9933;margin:0 2px;
+    }
+    .dialog_table  .sup
+    {
+        color: #339900;
+    }
+    .dialog_table .nosup
+    {
+        color: #FF9933;
+    }
+</style>
+
+<div id="dialogNewUser1" class="dialogBox" style="display: none;">
+    <div class="tkWrap pngfix">
+    </div>
+    <div class="tkDefault_wrap" style="width:1100px">
+        <div class="tkDefault_top">
+            <span class="tkDefault_tit">新手指南</span>
+        </div>
+        <div class="clear">
+        </div>
+        <div id="dialogNewUser1_Content" class="tkDefault_mid">
+             <div class="tkPayment" style="padding-left: 0;">
+                <p style="text-indent: 0em;line-height:1.6em;">数据库用户分为普通用户、译员用户、VIP用户、VVIP用户四种，用户可选择适合自己的用户标准，推荐购买VIP用户。</p>
+                <p style="text-indent: 0em;line-height:1.6em;">收费标准与相应的权限如下表：</p>
+      <table cellspacing="0" cellpadding="0" border="0" width="100%" class="dialog_table">
+        <thead>
+          <tr>
+            <th>用户类型</th>
+            <th width="17%">普通用户</th>
+            <th width="17%">译员用户</th>
+            <th width="17%">VIP用户</th>
+            <th width="17%">VVIP用户1</th>
+            <th width="17%">VVIP用户2</th>
+         </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>收费标准</th>
+            <td>0</td>
+            <td>0</td>
+            <td><span class="num">198</span>元/年</td>
+            <td><span class="num">19,800</span>元/年</td>
+            <td><span class="num">35,000</span>元/年</td>
+          </tr>
+          <tr>
+            <th>普通文件</th>
+            <td>扣除积分下载</td>
+            <td>扣除积分下载</td>
+            <td>每天可免费下载<span class="num">100</span>篇</td>
+            <td>每天可免费下载<span class="num">100</span>篇</td>
+            <td>每天可免费下载<span class="num">100</span>篇</td>
+          </tr>
+          <tr>
+            <th>内部文件</th>
+            <td>扣除积分下载</td>
+            <td>扣除积分下载</td>
+            <td>扣除积分或购买下载</td>
+            <td>扣除积分或购买下载</td>
+            <td>扣除积分或购买下载</td>
+          </tr>
+          <tr>
+            <th>收费文件</th>
+            <td>无法下载</td>
+            <td>无法下载</td>
+            <td>购买下载</td>
+            <td>购买下载</td>
+            <td>购买下载</td>
+          </tr>
+          <tr>
+            <th>上传原文</th>
+            <td>可以上传获取相应积分</td>
+            <td>可以上传获取相应积分</td>
+            <td>可以上传获取相应积分</td>
+            <td>可以上传获取相应积分</td>
+            <td>可以上传获取相应积分</td>
+          </tr>
+          <tr>
+            <th>期刊</th>
+            <td>全部免费下载</td>
+            <td>全部免费下载</td>
+            <td>全部免费下载</td>
+            <td>全部免费下载</td>
+            <td>全部免费下载</td>
+          </tr>
+          <tr>
+            <th>纸质材料在线阅读</th>
+            <td class="nosup">×</td>
+            <td class="nosup">×</td>
+            <td><span style="color:red;">编译类</span>免费阅读<span class="num">2</span>册</td>
+            <td><span style="color:red;">编译类</span>免费阅读<span class="num">2</span>册</td>
+            <td><span style="color:red;">编译类</span>免费阅读<span class="num">2</span>册</td>
+          </tr>
+          <tr>
+            <th>态势要图小图下载</th>
+            <td class="nosup">×</td>
+            <td class="nosup">×</td>
+            <td>全部免费下载</td>
+            <td>全部免费下载</td>
+            <td>全部免费下载</td>
+          </tr>
+          <tr>
+            <th>在线阅读</th>
+            <td class="nosup">×</td>
+            <td class="nosup">×</td>
+            <td>全部免费下载</td>
+            <td>有效期内可在线阅读所有<strong>军事译文<span style="color:red;">或</span>开源情报融合</strong>产品</td>
+            <td>有效期内可在线阅读所有<strong>军事译文<span style="color:red;">和</span>开源情报融合</strong>产品</td>
+          </tr>
+          <tr>
+            <th>知识库定制</th>
+            <td class="nosup">×</td>
+            <td class="nosup">×</td>
+            <td class="sup">√</td>
+            <td class="sup">√</td>
+            <td class="sup">√</td>
+          </tr>
+          <tr>
+            <th>推荐翻译</th>
+            <td class="nosup">×</td>
+            <td class="sup">√</td>
+            <td class="sup">√</td>
+            <td class="sup">√</td>
+            <td class="sup">√</td>
+          </tr>
+
+        </tbody>
+      </table>
+                <p style="text-indent: 0em;line-height:1.6em;"><strong>普通文件：</strong>除内部文件和付费文件外，其余均为普通文件。主要有文档库绝大部分原文、人物库人物简介等原始文件。</p>
+                <p style="text-indent: 0em;line-height:1.6em;"><strong>内部文件：</strong>指各类 FOUO 原文文件。主要是文档库“内部文件”类文档。</p>
+                <p style="text-indent: 0em;line-height:1.6em;"><strong>付费文件：</strong>指所通过购买得到的原文文件、译文和分析材料等，主要有文档库“付费文件”类原文、军事译文库绝大部分译文、开源情报融合产品、纸质材料、人物库“人物分析”材料、会议库“会议分析”材料等。</p>
+            </div>
+            <div class="tkDefault_btn">
+                <a href="javascript:;" onclick="$ShowDialog(2)" class="icons inlineBlock tkDefault_btn1">下一步</a></div>
+        </div>
+        <div class="tkDefault_bot">
+        </div>
+    </div>
+</div>
+
+<div id="dialogNewUser2" class="dialogBox" style="display: none;">
+    <div class="tkWrap pngfix">
+    </div>
+    <div class="tkDefault_wrap" style="width:760px">
+        <div class="tkDefault_top">
+            <span class="tkDefault_tit">新手指南</span>
+        </div>
+        <div class="clear">
+        </div>
+        <div id="dialogNewUser2_Content" class="tkDefault_mid">
+             <div class="tkPayment" style="padding-left: 0;">
+                <p style="text-indent: 2em;">通过网页左上角的“个人中心”，可以查阅并使用个人收藏夹、知识库定制、原文上传、修改登录密码、帐户充值、购买（续费）VIP等功能。</p>
+                <p style="text-indent: 2em;">一个帐户同时在线数只能保持一个在线，请妥善保管好个人的帐户信息。</p>
+                <p style="text-indent: 2em;">目前数据库还处于建设阶段（1.0版），数据质量和软件功能上还有欠缺。使用过程中若给您带来不便敬请谅解，我们将持续建设完善该数据库。</p>
+            </div>
+            <div class="tkDefault_btn">
+                <a href="javascript:;" onclick="$AjaxReadGuide()" class="icons inlineBlock tkDefault_btn1">开始使用</a>
+            </div>
+        </div>
+        <div class="tkDefault_bot">
+        </div>
+    </div>
+</div>
+<div id="dialogAbout" class="dialogBox" style="display: none;">
+    <div class="tkWrap pngfix">
+    </div>
+    <div class="tkDefault_wrap" style="width:560px">
+        <div class="tkDefault_top">
+           <a href="javascript:;" onclick="$(&#39;#dialogAbout&#39;).hide();" class="icons tkClose" title="关闭"></a>
+            <span class="tkDefault_tit">关于</span>
+        </div>
+        <div class="clear">
+        </div>
+        <div id="dialogAbout_Content" class="tkDefault_mid">
+             <div class="tkPayment" style="padding-left: 0;">
+                <p style="text-align:center;">•外军防务开源情报数据库</p>
+               <p style="text-align:center;color:orange;">Ver 2.0.0.33</p>
+               <p style="text-align:center;">战略与防务研究所 版权所有</p>
+                <p style="text-align:center;">Copyright © 2019-2021 Knowfar.All Rights Reserved</p>
+            </div>
+            <div class="tkDefault_btn">
+                <a href="javascript:;" onclick="$(&#39;#dialogAbout&#39;).hide();" class="icons inlineBlock tkDefault_btn1">关闭</a>
+            </div>
+        </div>
+        <div class="tkDefault_bot">
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function $ShowAbout() {
+        $('#dialogAbout').show();
+
+        $(window).resize(function () {
+            $('#dialogAbout .tkDefault_wrap').css({
+                position: 'absolute',
+                left: ($(window).width() - $('#dialogAbout .tkDefault_wrap').outerWidth()) / 2,
+                top: ($(window).height() - $('#dialogAbout .tkDefault_wrap').outerHeight()) / 2 + $(document).scrollTop()
+            });
+        });
+        $(window).resize();
+    }
+</script>
+<style>
+table.t1{
+	background:#fff;
+	border-collapse:collapse;
+	width:600px;
+	margin:10px auto 0;
+}
+table.t1 td,table.t1 th{
+	padding:4px;
+}
+table.t1 table,table.t1 table td{
+	border:0px solid #D8EBFF;
+	color:#999;
+	line-height:1.4em;
+}
+table.t1 table td a{
+	color:#999;
+}
+table.t1 td p{
+	text-indent:2em;
+	width:100%;
+}
+table.t1 td p.user-level{
+	text-indent:0;
+	line-height:1.8em;
+}
+table.t1 table td a.user2vip
+{
+	display:inline-block;
+	background: #F47A00;
+	color: #fff;
+	border-radius: 5px;
+	padding:0.3em 0.5em;
+	line-height:1.2em;
+	margin:0 10px;
+	text-decoration:none;
+}
+
+</style>
+<div id="dialogContactUs" class="dialogBox" style="display: none;">
+    <div class="tkWrap pngfix">
+    </div>
+    <div class="tkDefault_wrap" style="width:680px">
+        <div class="tkDefault_top">
+           <a href="javascript:;" onclick="$(&#39;#dialogContactUs&#39;).hide();" class="icons tkClose" title="关闭"></a>
+            <span class="tkDefault_tit">联系我们</span>
+        </div>
+        <div class="clear">
+        </div>
+        <div id="dialogContactUs_Content" class="tkDefault_mid">
+             <div class="tkPayment" style="padding-left: 0;">
+
+<table class="t1" width="600" cellspacing="10" border="0" align="center">
+                  <tbody>
+                    <tr>
+                      <td><table width="100%" cellspacing="5" border="0">
+                          <tbody>
+                            <tr>
+                              <td><strong>战略与防务研究所</strong></td>
+                            </tr>
+                            <tr>
+                              <td>地址：xxx</td>
+                            </tr>
+                            <tr>
+                              <td>邮编：214433</td>
+                            </tr>
+                            <tr>
+                              <td>邮箱：xxx</td>
+                            </tr>
+                            <tr>
+                              <td>资料购买：xxx</td>
+                            </tr>
+                            <tr>
+                              <td style="color:red;">客服电话：xxx</td>
+                            </tr>
+                            <tr>
+                              <td>工作时间：08:30—11:30，12:30—17:00（国家法定工作日）</td>
+                            </tr>
+                          </tbody>
+                        </table></td>
+                    </tr>
+                    <tr>
+                      <td><table width="100%" cellspacing="2" border="0">
+                          <tbody>
+                            <tr>
+                              <td><strong>北京</strong></td>
+                            </tr>
+                            <tr>
+                              <td>地址：</td>
+                            </tr>
+                            <tr>
+                              <td>邮编：100036</td>
+                            </tr>
+                            <tr>
+                              <td>邮箱：</td>
+                            </tr>
+                            <tr>
+                              <td>资料购买：xxx-xxxxx</td>
+                            </tr>
+                            <tr>
+                              <td>翻译合作/课题研究业务：xxx-xxxxxx</td>
+                            </tr>
+                            <tr>
+                              <td style="color:red;">客服电话:</td>
+                            </tr>
+                            <tr>
+                              <td>工作时间：09:00—12:00，13:00—17:30（国家法定工作日）</td>
+                            </tr>
+                          </tbody>
+                        </table></td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+            <div class="tkDefault_btn">
+                <a href="javascript:;" onclick="$(&#39;#dialogContactUs&#39;).hide();" class="icons inlineBlock tkDefault_btn1">关闭</a>
+            </div>
+        </div>
+        <div class="tkDefault_bot">
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function $ShowContactUs() {
+        $('#dialogContactUs').show();
+
+        $(window).resize(function () {
+            $('#dialogContactUs .tkDefault_wrap').css({
+                position: 'absolute',
+                left: ($(window).width() - $('#dialogContactUs .tkDefault_wrap').outerWidth()) / 2,
+                top: ($(window).height() - $('#dialogContactUs .tkDefault_wrap').outerHeight()) / 2 + $(document).scrollTop()
+            });
+        });
+        $(window).resize();
+    }
+</script>
+
+
+
+
+<div id="dialogUserDefined" class="dialogBox" style="display: none;">
+    <div class="tkWrap pngfix">
+    </div>
+    <div class="tkDefault_wrap" style="width:680px">
+        <div class="tkDefault_top">
+           <a href="javascript:;" onclick="$(&#39;#dialogUserDefined&#39;).hide();" class="icons tkClose" title="关闭"></a>
+            <span class="tkDefault_tit">用户说明</span>
+        </div>
+        <div class="clear">
+        </div>
+        <div id="dialogUserDefined_Content" class="tkDefault_mid">
+             <div class="tkPayment" style="padding-left: 0;">
+
+<table class="t1" width="600" cellspacing="10" border="0" align="center">
+                  <tbody>
+                    <tr>
+                      <td><table width="100%" cellspacing="5" border="0">
+                          <tbody>
+                            <tr>
+                              <td><p class="user-level">VIP用户：收费标准为198元/年。在普通会员的基础上，每天可以下载100篇普通原文文件（不含下载期刊的数量）；每年可以在线浏览2册编译纸质材料（内容可以直接复制）；可以免费下载态势要图高清小图；可以在线充值购买军事译文（按需消费）、开源情报融合、纸质材料在线阅读、人物分析等付费文件。<a class="user2vip" href="http://www.knowfar.net.cn/user/account_membership.aspx">立即升级VIP</a></p></td>
+                            </tr>
+                            <tr>
+                              <td><p class="user-level">VVIP用户：在线阅读包年用户，在原VIP用户服务的基础上，可在线阅读 “军事译文”和“开源情报融合”库的所有内容。军事译文模块：19800元/年，开源情报融合模块：19800元/年  两个模块同时开通，优惠价：35000元/年。</p></td>
+                            </tr>
+                          </tbody>
+                        </table></td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+            <div class="tkDefault_btn">
+                <a href="javascript:;" onclick="$(&#39;#dialogUserDefined&#39;).hide();" class="icons inlineBlock tkDefault_btn1">关闭</a>
+            </div>
+        </div>
+        <div class="tkDefault_bot">
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function $ShowUserDefined() {
+        $('#dialogUserDefined').show();
+
+        $(window).resize(function () {
+            $('#dialogUserDefined .tkDefault_wrap').css({
+                position: 'absolute',
+                left: ($(window).width() - $('#dialogUserDefined .tkDefault_wrap').outerWidth()) / 2,
+                top: ($(window).height() - $('#dialogUserDefined .tkDefault_wrap').outerHeight()) / 2 + $(document).scrollTop()
+            });
+        });
+        $(window).resize();
+    }
+</script>
+
+
+</body></html>

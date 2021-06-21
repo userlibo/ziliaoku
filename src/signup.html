@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)http://www.knowfar.net.cn/passport/register.aspx -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>注册_通行证</title>
+<link rel="stylesheet" href="./signup_files/base.css">
+<link rel="stylesheet" href="./signup_files/css.css">
+<script type="text/javascript" src="./signup_files/jquery.tools.pack.js.下载"></script>
+<script type="text/javascript" src="./signup_files/global.js.下载"></script>
+<script type="text/javascript" src="./signup_files/jquery.SuperSlide.2.1.1.js.下载"></script>
+<style type="text/css">
+.logErr{width: 306px;height: 26px;line-height: 26px;text-align: center;border: 1px solid #f78f8f;background-color: #f7c2c2;margin:0 auto;}
+</style>
+ <!-- <script type="text/javascript">
+     var countdown_login = 0;
+
+    function $WaitingTime() {
+        if (countdown_login == 0) {
+            $('#dialogRegisterNotice .tkDefault_btn a').text("开始注册");
+            return;
+        } else {
+            $('#dialogRegisterNotice .tkDefault_btn a').text("剩余(" + countdown_login + ")");
+            countdown_login--;
+        }
+        setTimeout(function () { $WaitingTime(); }, 1000);
+    }
+
+    function $ShowDialog() {
+        countdown_login = 15;
+        $WaitingTime();
+        $('#dialogRegisterNotice').show();
+
+        $(window).resize(function () {
+            $('#dialogRegisterNotice  .tkDefault_wrap').css({
+                position: 'absolute',
+                left: ($(window).width() - $('#dialogRegisterNotice  .tkDefault_wrap').outerWidth()) / 2,
+                top: ($(window).height() - $('#dialogRegisterNotice  .tkDefault_wrap').outerHeight()) / 2 + $(document).scrollTop()
+            });
+        });
+        $(window).resize();
+    }
+    function $StartRegister(){
+            if (countdown_login > 0) {
+            console.log("还剩" + countdown_login + "秒");
+            return;
+        }
+    $('#dialogRegisterNotice').hide();
+    }
+     $(document).ready(function () {
+         $ShowDialog();
+     });
+</script> -->
+</head>
+<body class="SignUp">
+<div class="header">
+	<div class="wrap">
+		<a href="http://www.knowfar.net.cn/default.aspx" class="logo">
+        情报数据库</a>
+        <!-- <a href="javascript:;" onclick="$ShowContactUs()" class="sign-up" style="right:110px;">联系我们</a> -->
+        <a href="javascript:;" class="sign-up" style="right:110px;">联系我们</a>
+        <a href="./signin.html" class="sign-up">登录</a>
+	</div>
+</div>
+<!-- banner -->
+<div class="banner">
+    <div class="sign-box sign-up-box">
+      <form id="register_form">
+        <h3>注 册</h3>
+        <ul>
+          <li id="liRefereeName">
+            <input class="input" type="text" id="txtRefereeName" placeholder="请输入推荐人姓名，可不填">
+            <p style="color:red;line-height:30px;">请尽量填写真实姓名，便于我们审核。</p>
+          </li>
+          <li id="liMobileTel">
+            <input class="input" type="text" id="txtMobileTel" placeholder="请输入手机号">
+            <p class="w-tip"></p>
+          </li>
+          <li id="liMobileCode" class="yzm">
+            <input class="input" type="text" id="txtMobileCode" placeholder="短信验证码">
+            <p id="getCode" class="get" onclick="ajaxGetCode()">获取手机验证码</p>
+            <p class="w-tip"></p>
+          </li>
+          <li id="liEmail">
+            <input class="input" type="text" id="txtEmail" placeholder="请输入电子邮箱，可不填">
+            <p class="w-tip"></p>
+          </li>
+          <li id="liRegPWD1" class="pas-repeat">
+            <input class="input" type="password" id="txtRegPWD1" placeholder="登录密码">
+            <p class="w-tip"></p>
+          </li>
+          <li id="liRegPWD2" class="pas-repeat">
+            <input class="input" type="password" id="txtRegPWD2" placeholder="请再次输入密码">
+            <p class="w-tip"></p>
+          </li>
+          <li><div id="reg_errorinfo"></div></li>
+          <li>
+            <input class="sub" value="注 册" type="button" id="btnRegister" onclick="ajaxRegister()">
+          </li>
+        </ul>
+        <div class="last"> 注册即代表您已阅读并同意 <a href="#" target="_blank">注册协议</a> 。 </div>
+      </form>
+    </div>
+</div>
+<div id="dialogRegister" class="dialogBox" style="display:none;">
+	<div class="tkWrap pngfix"></div>
+	<div class="tkDefault_wrap">
+		<div class="tkDefault_top">
+			<a href="javascript:;" onclick="$(&#39;#dialogRegister&#39;).hide();" class="icons tkClose" title="关闭"></a>
+			<span class="tkDefault_tit">温馨提醒</span>
+		</div>
+		<div class="clear"></div>
+		<div class="tkDefault_mid">
+            <div class="tkPayment"><p id="RegisterTips"></p></div>
+            <div class="tkDefault_btn"><a href="http://www.knowfar.net.cn/passport/login.aspx" class="icons inlineBlock tkDefault_btn1">我知道了</a></div>
+
+        
+        </div>
+		<div class="tkDefault_bot"></div>
+	</div>
+</div>
+<!-- e banner -->
+<!-- footer -->
+<div id="footer" class="footer">
+	<div class="bottom clearfix wrap">
+        <div style="line-height: 60px;width:100%;text-align:center;color:white; ">
+            战略与防务研究所版权所有 © 2019-2021.  <a target="_blank" href="http://www.beian.miit.gov.cn/">京ICP备xxx号-1</a>
+		</div>
+	</div>
+</div>
+<!-- e footer -->
+<div id="dialogRegisterNotice" class="dialogBox" style="display: none;">
+    <div class="tkWrap pngfix">
+    </div>
+    <div class="tkDefault_wrap" style="width: 760px; position: absolute; left: 379.5px; top: 349px;">
+        <div class="tkDefault_top">
+            <span class="tkDefault_tit">注册须知</span>
+        </div>
+        <div class="clear">
+        </div>
+        <div id="dialogRegisterNotice_Content" class="tkDefault_mid">
+             <div class="tkPayment" style="padding-left: 0;">
+                <p style="text-indent: 2em;">为保证数据库使用安全，我们采取身份审核的安全措施（能证明为相关单位人员即可，无需实名），确保使用该数据库的人员确实为我们真正的服务对象，即中国防务生产与研究领域相关人员或机构。主要流程：在线注册——身份审核——登录使用。</p>
+                <p style="text-indent: 2em;">在线注册：填写真实的手机号、验证码、邮箱等相应的信息，提交注册申请。</p>
+                <p style="text-indent: 2em;">身份审核：所工作人员将会在一个工作日与您联系，烦请注意电话或短信提醒，以便进行身份审核。您也可以主动与工作人员进行联系，能提供相应的身份认定的依据即可。</p>
+                <p style="text-indent: 2em;">（注：为了安全，我们不保存任何实质性依据信息）。</p>
+                <p style="text-indent: 2em;">登录使用：身份审核完毕后，即可使用注册的帐号登录，并根据自身的需求购买相应的服务。</p>
+            </div>
+            <div class="tkDefault_btn">
+                <a href="javascript:;" onclick="$StartRegister();" class="icons inlineBlock tkDefault_btn1">开始注册</a>
+            </div>
+        </div>
+        <div class="tkDefault_bot">
+        </div>
+    </div>
+</div>
+<div id="dialogAbout" class="dialogBox" style="display: none;">
+    <div class="tkWrap pngfix">
+    </div>
+    <div class="tkDefault_wrap" style="width:560px">
+        <div class="tkDefault_top">
+           <a href="javascript:;" onclick="$(&#39;#dialogAbout&#39;).hide();" class="icons tkClose" title="关闭"></a>
+            <span class="tkDefault_tit">关于</span>
+        </div>
+        <div class="clear">
+        </div>
+        <div id="dialogAbout_Content" class="tkDefault_mid">
+             <div class="tkPayment" style="padding-left: 0;">
+                <p style="text-align:center;">•外军防务开源情报数据库</p>
+               <p style="text-align:center;color:orange;">Ver 2.0.0.33</p>
+               <p style="text-align:center;">战略与防务研究所 版权所有</p>
+                <p style="text-align:center;">Copyright © 2019-2021 Knowfar.All Rights Reserved</p>
+            </div>
+            <div class="tkDefault_btn">
+                <a href="javascript:;" onclick="$(&#39;#dialogAbout&#39;).hide();" class="icons inlineBlock tkDefault_btn1">关闭</a>
+            </div>
+        </div>
+        <div class="tkDefault_bot">
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function $ShowAbout() {
+        $('#dialogAbout').show();
+
+        $(window).resize(function () {
+            $('#dialogAbout .tkDefault_wrap').css({
+                position: 'absolute',
+                left: ($(window).width() - $('#dialogAbout .tkDefault_wrap').outerWidth()) / 2,
+                top: ($(window).height() - $('#dialogAbout .tkDefault_wrap').outerHeight()) / 2 + $(document).scrollTop()
+            });
+        });
+        $(window).resize();
+    }
+</script>
+<style>
+table.t1{
+	background:#fff;
+	border-collapse:collapse;
+	width:600px;
+	margin:10px auto 0;
+}
+table.t1 td,table.t1 th{
+	padding:4px;
+}
+table.t1 table,table.t1 table td{
+	border:0px solid #D8EBFF;
+	color:#999;
+	line-height:1.4em;
+}
+table.t1 table td a{
+	color:#999;
+}
+table.t1 td p{
+	text-indent:2em;
+	width:100%;
+}
+table.t1 td p.user-level{
+	text-indent:0;
+	line-height:1.8em;
+}
+table.t1 table td a.user2vip
+{
+	display:inline-block;
+	background: #F47A00;
+	color: #fff;
+	border-radius: 5px;
+	padding:0.3em 0.5em;
+	line-height:1.2em;
+	margin:0 10px;
+	text-decoration:none;
+}
+
+</style>
+<div id="dialogContactUs" class="dialogBox" style="display: none;">
+    <div class="tkWrap pngfix">
+    </div>
+    <div class="tkDefault_wrap" style="width:680px">
+        <div class="tkDefault_top">
+            <!-- onclick="$(&#39;#dialogContactUs&#39;).hide();" -->
+           <a href="javascript:;"  class="icons tkClose" title="关闭"></a>
+            <span class="tkDefault_tit">联系我们</span>
+        </div>
+        <div class="clear">
+        </div>
+        <div id="dialogContactUs_Content" class="tkDefault_mid">
+             <div class="tkPayment" style="padding-left: 0;">
+
+<table class="t1" width="600" cellspacing="10" border="0" align="center">
+                  <tbody>
+                    <tr>
+                      <td><table width="100%" cellspacing="5" border="0">
+                          <tbody>
+                            <tr>
+                              <td><strong>战略与防务研究所</strong></td>
+                            </tr>
+                            <tr>
+                              <td>地址：江阴市长江路777号东方广场1号楼819室</td>
+                            </tr>
+                            <tr>
+                              <td>邮编：214433</td>
+                            </tr>
+                            <tr>
+                              <td>邮箱：knowfar2009@126.com</td>
+                            </tr>
+                            <tr>
+                              <td>资料购买：0510-86403040</td>
+                            </tr>
+                            <tr>
+                              <td style="color:red;">客服电话：133951 59282（黄女士）、15312272018（蒋女士）</td>
+                            </tr>
+                            <tr>
+                              <td>工作时间：08:30—11:30，12:30—17:00（国家法定工作日）</td>
+                            </tr>
+                          </tbody>
+                        </table></td>
+                    </tr>
+                    <tr>
+                      <td><table width="100%" cellspacing="2" border="0">
+                          <tbody>
+                            <tr>
+                              <td><strong>北京</strong></td>
+                            </tr>
+                            <tr>
+                              <td>地址：北京市海淀区翠微路12号新华联国际4单元302室</td>
+                            </tr>
+                            <tr>
+                              <td>邮编：100036</td>
+                            </tr>
+                            <tr>
+                              <td>邮箱：knowfar@163.com</td>
+                            </tr>
+                            <tr>
+                              <td>资料购买：010-68186991</td>
+                            </tr>
+                            <tr>
+                              <td>翻译合作/课题研究业务：010-88633904</td>
+                            </tr>
+                            <tr>
+                              <td style="color:red;">客服电话：156521 59282（刘女士）</td>
+                            </tr>
+                            <tr>
+                              <td>工作时间：09:00—12:00，13:00—17:30（国家法定工作日）</td>
+                            </tr>
+                          </tbody>
+                        </table></td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+            <div class="tkDefault_btn">
+                <a href="javascript:;" onclick="$(&#39;#dialogContactUs&#39;).hide();" class="icons inlineBlock tkDefault_btn1">关闭</a>
+            </div>
+        </div>
+        <div class="tkDefault_bot">
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function $ShowContactUs() {
+        $('#dialogContactUs').show();
+
+        $(window).resize(function () {
+            $('#dialogContactUs .tkDefault_wrap').css({
+                position: 'absolute',
+                left: ($(window).width() - $('#dialogContactUs .tkDefault_wrap').outerWidth()) / 2,
+                top: ($(window).height() - $('#dialogContactUs .tkDefault_wrap').outerHeight()) / 2 + $(document).scrollTop()
+            });
+        });
+        $(window).resize();
+    }
+</script>
+
+
+
+
+<div id="dialogUserDefined" class="dialogBox" style="display: none;">
+    <div class="tkWrap pngfix">
+    </div>
+    <div class="tkDefault_wrap" style="width:680px">
+        <div class="tkDefault_top">
+           <a href="javascript:;" onclick="$(&#39;#dialogUserDefined&#39;).hide();" class="icons tkClose" title="关闭"></a>
+            <span class="tkDefault_tit">用户说明</span>
+        </div>
+        <div class="clear">
+        </div>
+        <div id="dialogUserDefined_Content" class="tkDefault_mid">
+             <div class="tkPayment" style="padding-left: 0;">
+
+<table class="t1" width="600" cellspacing="10" border="0" align="center">
+                  <tbody>
+                    <tr>
+                      <td><table width="100%" cellspacing="5" border="0">
+                          <tbody>
+                            <tr>
+                              <td><p class="user-level">VIP用户：收费标准为198元/年。在普通会员的基础上，每天可以下载100篇普通原文文件（不含下载期刊的数量）；每年可以在线浏览2册编译纸质材料（内容可以直接复制）；可以免费下载态势要图高清小图；可以在线充值购买军事译文（按需消费）、开源情报融合、纸质材料在线阅读、人物分析等付费文件。<a class="user2vip" href="http://www.knowfar.net.cn/user/account_membership.aspx">立即升级VIP</a></p></td>
+                            </tr>
+                            <tr>
+                              <td><p class="user-level">VVIP用户：在线阅读包年用户，在原VIP用户服务的基础上，可在线阅读 “军事译文”和“开源情报融合”库的所有内容。军事译文模块：19800元/年，开源情报融合模块：19800元/年  两个模块同时开通，优惠价：35000元/年。</p></td>
+                            </tr>
+                          </tbody>
+                        </table></td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+            <div class="tkDefault_btn">
+                <a href="javascript:;" onclick="$(&#39;#dialogUserDefined&#39;).hide();" class="icons inlineBlock tkDefault_btn1">关闭</a>
+            </div>
+        </div>
+        <div class="tkDefault_bot">
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function $ShowUserDefined() {
+        $('#dialogUserDefined').show();
+
+        $(window).resize(function () {
+            $('#dialogUserDefined .tkDefault_wrap').css({
+                position: 'absolute',
+                left: ($(window).width() - $('#dialogUserDefined .tkDefault_wrap').outerWidth()) / 2,
+                top: ($(window).height() - $('#dialogUserDefined .tkDefault_wrap').outerHeight()) / 2 + $(document).scrollTop()
+            });
+        });
+        $(window).resize();
+    }
+</script>
+
+
+<script type="text/javascript">
+    var countdown = 60;
+
+    function CodeState() {
+        if (countdown == 0) {
+            $('#getCode').html("获取手机验证码");
+            countdown = 60;
+            $("#reg_errorinfo").show().text('');
+            $("#reg_errorinfo").removeClass("logErr");
+            return;
+        } else {
+            $('#getCode').html("重新发送(" + countdown + ")");
+            countdown--;
+
+        }
+        setTimeout(function () {
+            CodeState();
+        }
+    , 1000)
+    }
+    function ajaxGetCode() {
+        if ($('#getCode').html() != "获取手机验证码")
+            return;
+        $("#liMobileTel").removeClass("wrong");
+        var uMobile = $("#txtMobileTel").val();
+        if (!uMobile.isMobile()) {
+            $("#liMobileTel").addClass("wrong");
+            $("#liMobileTel .w-tip").text('手机号输入不正确');
+            $("#txtMobileTel").focus();
+            return;
+        }
+        $("#reg_errorinfo").hide();
+        $.ajax({
+            type: "post",
+            dataType: "json",
+            data: { mobiletel: uMobile,
+                isregister: 1
+            },
+            url: "ajax.aspx?oper=ajaxGetCode",
+            error: function (XmlHttpRequest, textStatus, errorThrown) { if (XmlHttpRequest.responseText != "") { PaperAskAlert(XmlHttpRequest.responseText); } },
+            success: function (d) {
+                if (d.result == 1) {
+                    $("#txtMobileCode").val("");
+                    CodeState();
+                } else {
+                    $("#reg_errorinfo").show().text(d.returnval);
+                    $("#reg_errorinfo").addClass("logErr");
+                }
+            }
+        });
+    }
+</script>
+
+
+ <script type="text/javascript">
+     var hasSubmit = false;
+     $(document).ready(function () {
+         $('#register_form input').bind('keypress', function (event) {
+             if (event.keyCode == "13") {
+                 $("#btnRegister").click();
+             }
+         });
+     });
+
+     function CheckForm() {
+         var uMobile = $("#txtMobileTel").val();
+         var uMobileCode = $("#txtMobileCode").val();
+         var uEmail = $("#txtEmail").val();
+         var oPass1 = $('#txtRegPWD1').val();
+         var oPass2 = $('#txtRegPWD2').val();
+         var uRefereeName = $("#txtRefereeName").val();
+         if (!hasSubmit) return;
+         $("#liMobileTel").removeClass("wrong");
+         $("#liRegPWD1").removeClass("wrong");
+         $("#liRegPWD2").removeClass("wrong");
+         $("#liMobileCode").removeClass("wrong");
+         if (!uMobile.isMobile()) {
+             $("#liMobileTel").addClass("wrong");
+             $("#liMobileTel .w-tip").text('手机号输入不正确');
+             $("#txtMobileTel").focus();
+             return;
+         }
+
+         if (uRefereeName.length == 0) {
+             //$("#liRefereeName").addClass("wrong");
+             //$("#liRefereeName .w-tip").text('请填写推荐人姓名');
+             //return;
+         }
+         if (uEmail.length > 0 && !uEmail.isEmail()) {
+             $("#liEmail").addClass("wrong");
+             $("#liEmail .w-tip").text('请填写有效的邮箱');
+             //$("#txtEmail").focus();
+             return;
+         }
+
+         if (oPass1 == "" || oPass1.length < 6) {
+             $("#liRegPWD1").addClass("wrong");
+             $("#liRegPWD1 .w-tip").text('密码长度不少于6位.');
+             //$("#txtRegPWD1").focus();
+             return;
+         }
+ 
+        if (oPass2 == "" || oPass2.length < 6) {
+            $("#liRegPWD2").addClass("wrong");
+            $("#liRegPWD2 .w-tip").text('密码长度不少于6位.');
+            //$("#txtRegPWD2").focus();
+            return;
+        }
+        if (oPass2 != oPass1) {
+             $("#liRegPWD2").addClass("wrong");
+             $("#liRegPWD2 .w-tip").text('两次密码不一致.');
+             //$("#txtRegPWD2").focus();
+             return;
+         }
+
+         if (uMobileCode == "" || uMobileCode.length != 4) {
+             $("#liMobileCode").addClass("wrong");
+             $("#liMobileCode .w-tip").text('请输入4位验证码.');
+             //$("#txtMobileCode").focus();
+             return;
+         }
+         return true;
+     }
+
+     function ajaxRegister() {
+         hasSubmit = true;
+         var btnVal = $('#btnRegister').val();
+         if (CheckForm()) {
+             $("#reg_errorinfo").removeClass("logErr");
+             $("#reg_errorinfo").text("");
+             $('#btnRegister').val('提交...');
+             $.ajax({
+                 type: "post",
+                 dataType: "json",
+                 url: "ajax.aspx?oper=ajaxRegister",
+                 data: {
+                     "mobiletel": $("#txtMobileTel").val(),
+                     "email": $("#txtEmail").val(),
+                     "userpass": $("#txtRegPWD1").val(),
+                     "refereename": $("#txtRefereeName").val(),
+                     "code": $("#txtMobileCode").val()
+                 },
+                 error: function (XmlHttpRequest, textStatus, errorThrown) { hasSubmit = false; $('#btnRegister').val(btnVal); alert(XmlHttpRequest.responseText); },
+                 success: function (d) {
+                     hasSubmit = false;
+                     $('#btnRegister').val(btnVal);
+                     switch (d.result) {
+                         case '0':
+                             $("#reg_errorinfo").addClass("logErr");
+                             $("#reg_errorinfo").show().text(d.returnval);
+                             break;
+                         case '1':
+                             //location.href = 'http://www.knowfar.net.cn/passport/login.aspx';
+                             $('#RegisterTips').html(d.returnval);
+                             $('#dialogRegister').show();
+
+                             $(window).resize(function () {
+                                 $('#dialogRegister .tkDefault_wrap').css({
+                                     position: 'absolute',
+                                     left: ($(window).width() - $('#dialogRegister .tkDefault_wrap').outerWidth()) / 2,
+                                     top: ($(window).height() - $('#dialogRegister .tkDefault_wrap').outerHeight()) / 2 + $(document).scrollTop()
+                                 });
+                             });
+                             $(window).resize();
+                             break;
+                     }
+                 }
+             });
+         } else {
+             $('#btnRegister').addClass("disabled");
+         }
+     }
+     $(document).ready(function () {
+         $("#txtMobileTel,#txtMobileCode,#txtRegPWD1,#txtRegPWD2").focusout(function () {
+             if (hasSubmit) {
+                 if (CheckForm()) {
+                     $('#btnRegister').removeClass("disabled");
+                 } else {
+                     $('#btnRegister').addClass("disabled");
+                 }
+             }
+         })
+     });
+</script><div class="xl-chrome-ext-bar" id="xl_chrome_ext_{4DB361DE-01F7-4376-B494-639E489D19ED}" style="display: none;">
+      <div class="xl-chrome-ext-bar__logo"></div>
+
+      <a id="xl_chrome_ext_download" href="javascript:;" class="xl-chrome-ext-bar__option">下载视频</a>
+      <a id="xl_chrome_ext_close" href="javascript:;" class="xl-chrome-ext-bar__close"></a>
+    </div></body></html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+    <title>防务知识库</title>
+	<link rel="shortcut icon" href="./images/jxapplys_logo.png" type="image/x-icon" />
+    <link href="./css/css.css" rel="stylesheet" />
+    <link href="./css/swiper.min.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="./css/bootstrap.min.css"
+    />
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/popper.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+          $("#searchbutton").click(function () {
+            console.log("执行了搜索...");
+            var title = $("#searchinput").val();
+            $.post(
+              "/BaseArticle/list",
+              {
+                "searchFilter[0].fieldName": "title",
+                "searchFilter[0].operate": "like",
+                "searchFilter[0].value": title,
+              },
+              function (data, status) {
+                alert("数据：" + data + "\n状态：" + status);
+                window.location.href = "./search.html";
+              },
+              "json"
+            );
+          });
+        });
+      </script>
+</head>
+<body>
+  
+
+    <!-- 网站header开始 -->
+    <div class="header">
+            <div class="logoAndSearch">
+                <div class="wrap">
+                    <div class="logo">
+                        <h5 style="font-weight: bolder;"><a href="./index.html">资料检索数据库</a></h5>
+                        <!-- <h1><a href="index.html"><img src="./images/logo.png" /></a></h1> -->
+                    </div>
+                    <div class="search">
+                        <input
+                        id="searchinput"
+                        class="searchinput"
+                        name="keys"
+                        type="text"
+                        placeholder="请输入标题/副标题"
+                      />
+                      <button id="searchbutton" class="searchsubmit" type="submit">
+                        搜&nbsp;索
+                      </button>
+                    </div>
+                    <div class="loginAndLogout">
+                        <!-- <a href="http://192.168.0.177:8080/jxsuperengineer/index.html" target="_blank">敏捷开发平台</a> -->
+                    </div>
+                </div>    
+            </div>
+            <div class="mainnav">
+                <div class="wrap">
+                    <ul>
+                        <li>
+                            <a href="./index.html">首页</a>
+                          </li>
+                          <li><a href="./catalog.html">人物</a></li>
+                          <li><a href="./catalog.html">机构</a></li>
+                          <li><a href="./catalog.html">会议</a></li>
+                          <li><a href="./download.html">文档</a></li>
+                          <li><a href="./catalog.html">条令法规</a></li>
+                          <li><a href="./catalog.html">军事译文</a></li>
+                          <li><a href="./download.html">防务期刊</a></li>
+                          <li><a href="./download.html">纸质材料</a></li>
+                    </ul>
+                </div>
+            </div>
+
+    </div>
+	<!-- 网站header结束 -->
+	
+	    <!-- 网站右侧导航开始 -->
+		<div class="navigation display-none">
+			<a href="javascript:" id="toTop">
+				<i></i>
+			</a>
+		</div>
+		<!-- 网站右侧导航结束 -->	
+
+    <!-- 手机版导航开始 -->
+    <div class="m-header">
+        <div class="m-header-box">
+            <div class="m-logo"><img src="./images/m_logo.png" /></div>
+    
+            <div class="m-nav">
+                <ul>
+				    <li>
+                        <a href="./index.html">首页</a>
+                      </li>
+                      <li><a href="./catalog.html">人物</a></li>
+                      <li><a href="./catalog.html">机构</a></li>
+                      <li><a href="./catalog.html">会议</a></li>
+                      <li><a href="./download.html">文档</a></li>
+                      <li><a href="./catalog.html">条令法规</a></li>
+                      <li><a href="./catalog.html">军事译文</a></li>
+                      <li><a href="./download.html">防务期刊</a></li>
+                      <li><a href="./download.html">纸质材料</a></li>
+                </ul>
+            </div>
+
+            <div class="m-member">
+				<a href="login.html"><i class="iconfont">&#xe6ef;</i></a>
+				<a href="javascript:" id="suspension"><i class="iconfont">&#xe607;</i></a>
+			</div>
+        </div>
+    </div>
+    <!-- 手机版导航结束 -->
+    <div class="detail-content flex-center wrap">	
+     <div class="detail-article">
+	  <div class="bread-crumb divider">
+		  <span class="sub-title"><a href="./index.html" style="color:#285270	;">首页</a>/<a>军事译文</a></span>
+	  </div>
+      <div class="detail-article-content-wrap width-all"> 
+      <div class="width-all detail-article-title flex-center">中美俄隐身战机侧弹舱PK：歼20匠心独具，F22显王者之气</div>
+	    <div class="detail-article-time" style="text-align: center;"><span>时间:&nbsp;2021-6-17</span></div>
+        <div class="width-all detail-article-content">
+		上周三（8月12日）是俄空军节，俄国防部按惯例发布了一段兵种“庆生”短片。短片结合了近段时间以来，俄空军最炫的一些画面，其中就包括了早前备受关注的苏-57侧弹舱发射画面。
+
+		这个画面终结了苏-57是否有侧弹舱的讨论，由此可以看出F-22、歼-20以及苏-57这三款重型五代机都有了自己的独特侧弹舱设计，关于这个问题我们早前已做过介绍。今天，北国防务再来说说中美俄各自设计的特点。
+		
+		
+		
+		△从影片画面截图可清楚看到苏-57发射的是R-73或其改良型的格斗空空导弹
+		
+		总体而言，苏-57虽然披露了发射画面，但信息还是比较有限。这段苏-57发射格斗导弹的画面是从战机背面拍摄，但导弹却是从翼根下方发射，也就是说，镜头与导弹间隔着一大片机翼，看不到装载导弹的挂架，也看不到导弹离开挂架的瞬间。
+		
+		这点相当不寻常，一般来说拍摄导弹发射的画面是为了武器测试的目的，藉由全程记录导弹离架的过程，测试人员可以在事后回顾并分析导弹的飞行动态是否符合预期？有没有异常甚至是危及飞机的轨迹差异？而影片用在宣传用途则是顺便。因此，一般看到的导弹发射镜头都是镜头与导弹同面，也就是从侧方或下方完整的拍摄，很少有故意从反面拍摄的情形。
+		
+		
+		△2018年苏-57在叙利亚发射巡航导弹的画面，这镜头就是从正常地与导弹同侧拍摄，可以看到导弹从机腹后方弹舱抛出的短暂过程
+		
+			  那苏-57为什么要这样拍呢？自然就是跟正常测试的目的相反，俄罗斯还不想让大家看到格斗导弹的发射过程。那么，格斗导弹的发射过程有什么机密的呢？原因可能是格斗导弹从弹舱发射的机制比较复杂。
+		其它的对空或对面导弹从弹舱发射的流程在基本上相同，就是弹舱打开→挂架把导弹弹出去→弹舱关上。但格斗导弹的不同点在于，除了少数新型导弹具有发射后用数据链更新并锁定目标的能力外，大部分导弹需要在发射前让导引头锁定目标。因此，传统战机在发射格斗导弹前就需要做预先启动的动作，让导引头开始运作并锁定目标后才能开火。
+		△歼-20的两侧弹舱具有特别的 “半外挂”模式，可让格斗导弹在发射前先伸出并寻找目标
+			   然而，战机为了隐身需求把格斗导弹关在弹舱后就麻烦了，导弹在启动后就得先推出弹舱才能看到目标，但这也就制造出 “隐身空窗”。各国的隐身战机对此就出现了不同的应对方式，以及不同的发射流程。
+		以F-35为例，由于其设计以打击任务为主，加上成本导向，对这个考题就选择了弃权，宣告需要挂格斗导弹的时候就是不考虑隐身了，直接把导弹挂在外侧的固定挂架上；而中国的歼-20则是别出心裁地设计了 “半外挂”式挂架，在发射前把挂架推出去，但舱盖还能先盖起来，则 “隐身空窗”就不会那么大。
+		△F-22战机发射格斗导弹瞬间
+		而作为“隐身战机之王”的F-22，答题方式却是简单直接：弹舱打开→挂架推出去→发射导弹→收挂架→弹舱关上，只是多了个挂架推出，射导弹再收回的动作。
+			  不过“魔鬼”就藏在细节里，就目前公开的资料看来，F-22的格斗导弹在弹舱打开后是不会在外面停留与锁定，而是挂架一推出就发射的，这使格斗导弹发射流程制造的 “隐身空窗”与其它对空/对面武器的发射流程没有太大差异。能这样做的原因一是藉由火控系统的整合，导弹发射前锁定的时间极短，几乎不需要等待；二是具有强力的液压系统，弹舱与挂架能以极短时间完成 “开→推→收→关”的循环。
+		
+		△外国网友xmszeon根据苏-57外观所推测的格斗导弹发射机制
+			   而苏-57隐藏了格斗导弹的发射过程，自然就是不想让外界搞清楚它的流程与其它战机有何不同了从翼根弹舱的缝隙判断，其舱门应该是单片向内翻开的型式，而挂架应该需要推出才能发射。但从发射短片中看不到舱门开关的时间点，也就无法计算出暴露的 “隐身空窗”有多大了。这使得苏-57的真实作战性能仍然隐藏在迷雾之中，叫外界难以看清。
+	  </div>
+      </div>
+	 </div>
+	 <div class="tiaoling flex-column-left-center">
+        <div class="width-all tiaoling-header divider">
+            <span class="sub-title">相关推荐</span>
+            <span class="sub-count">共<i>9411</i>篇</span>
+            <span class="more">·更多</span> 
+        </div>
+        <div class="tiaoling-content flex-center">
+          <ul>
+        <li><a>[HQDA POLICY NOTICE 1-1]Pentagon Parking</a></li>
+        <li><a>[HQDA POLICY NOTICE 1-1]Pentagon Parking</a></li>
+        <li><a>[HQDA POLICY NOTICE 1-1]Pentagon Parking</a></li>
+        <li><a>[HQDA POLICY NOTICE 1-1]Pentagon Parking</a></li>
+        <li><a>[HQDA POLICY NOTICE 1-1]Pentagon Parking</a></li>
+        <li><a>[HQDA POLICY NOTICE 1-1]Pentagon Parking</a></li>
+        <li><a>[HQDA POLICY NOTICE 1-1]Pentagon Parking</a></li>
+        <li><a>[HQDA POLICY NOTICE 1-1]Pentagon Parking</a></li>
+        <li><a>[HQDA POLICY NOTICE 1-1]Pentagon Parking</a></li>
+        <li><a>[HQDA POLICY NOTICE 1-1]Pentagon Parking</a></li>
+        <li><a>[HQDA POLICY NOTICE 1-1]Pentagon Parking</a></li>
+        <li><a>[HQDA POLICY NOTICE 1-1]Pentagon Parking</a></li>
+        <li><a>[HQDA POLICY NOTICE 1-1]Pentagon Parking</a></li>
+        <li><a>[HQDA POLICY NOTICE 1-1]Pentagon Parking</a></li>
+        <li><a>[HQDA POLICY NOTICE 1-1]Pentagon Parking</a></li>       
+        </ul>
+        </div>
+        </div>
+    </div>
+	</div>
+ 
+    <!-- 首页时空大数据、智慧国土、智能警务结束 -->
+
+    <div class="footer">
+        <div class="wrap clearfix flex-center-start">
+          <div class="footerli rightBroderb1b3b4">
+            <h3>关于我们</h3>
+            <ul>
+              <li><a href="#">资料检索数据库</a></li>
+              <!-- <li><a href="#">研发一部</a></li>
+                  <li><a href="#">研发二部</a></li>
+                  <li><a href="#">研发三部</a></li> -->
+            </ul>
+          </div>
+          <div class="footerli rightBroderb1b3b4">
+            <h3>相关链接</h3>
+            <ul>
+              <li>
+                <a href="http://www.chinamil.com.cn" target="_blank">中国军网</a>
+              </li>
+              <li><a href="http://www.gfdy.gov.cn">国防动员网</a></li>
+              <li><a href="http://www.gov.cn/">中国政府网</a></li>
+              <li><a href="http://www.fmprc.gov.cn/">外交部</a></li>
+              <li><a href="http://www.miit.gov.cn/">工业和信息化部</a></li>
+              <li><a href="http://www.gwytb.gov.cn/">国台办</a></li>
+              <li><a href="http://www.people.com.cn/">人民网</a></li>
+            </ul>
+          </div>
+          <div class="footerqrcode rightBroderb1b3b4">
+            <h3>联系我们</h3>
+            <p>地址：郑州市中原区桐柏路与陇海路升龙金中环B座36层</p>
+            <p>电话：0371-55019103 邮箱：jx@jx-lab.com</p>
+            <!-- <img src="./images/qrcode.png" /> -->
+          </div>
+          <div class="footerqrcode">
+            <h3>版权所有</h3>
+            <p>© 版权所有2012-2020 郑州众合景轩 All rights reserved</p>
+            <!-- <img src="./images/qrcode.png" /> -->
+          </div>
+        </div>
+  
+        <div class="footer-version">
+          <!-- <p>© 版权所有2012-2020 郑州众合景轩 All rights reserved</p> -->
+          <!-- <p>地址：郑州市中原区桐柏路与陇海路升龙金中环B座36层</p>
+          <p>电话：0371-55019103 邮箱：jx@jx-lab.com</p> -->
+        </div>
+      </div>
+    <script src="./js/swiper.min.js"></script>
+    <script src="https://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+	<script src="./js/js.js"></script>
+</body>
+</html>

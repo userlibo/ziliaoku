@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"
+    />
+    <title>资料检索数据库</title>
+    <link
+      rel="shortcut icon"
+      href="./images/jxapplys_logo.png"
+      type="image/x-icon"
+    />
+    <link href="./css/css.css" rel="stylesheet" />
+    <link href="./css/swiper.min.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="./css/bootstrap.min.css"
+    />
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/popper.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("#searchbutton").click(function () {
+          console.log("执行了搜索...");
+          var title = $("#searchinput").val();
+          $.post(
+            "/BaseArticle/list",
+            {
+              "searchFilter[0].fieldName": "title",
+              "searchFilter[0].operate": "like",
+              "searchFilter[0].value": title,
+            },
+            function (data, status) {
+              alert("数据：" + data + "\n状态：" + status);
+              window.location.href = "./search.html";
+            },
+            "json"
+          );
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <!-- 网站header开始 -->
+    <div class="header">
+      <div class="logoAndSearch">
+        <div class="wrap">
+          <div class="logo">
+            <h5 style="font-weight: bolder">
+              <a href="./index.html">资料检索数据库</a>
+            </h5>
+            <!-- <h1><a href="index.html"><img src="./images/logo.png" /></a></h1> -->
+          </div>
+          <div class="search">
+            <input
+              id="searchinput"
+              class="searchinput"
+              name="keys"
+              type="text"
+              placeholder="请输入标题/副标题"
+            />
+            <button id="searchbutton" class="searchsubmit" type="submit">
+              搜&nbsp;索
+            </button>
+          </div>
+          <div class="loginAndLogout">
+            <!-- <a href="http://192.168.0.177:8080/jxsuperengineer/index.html" target="_blank">敏捷开发平台</a> -->
+          </div>
+        </div>
+      </div>
+      <div class="mainnav">
+        <div class="wrap">
+          <ul>
+            <li>
+                <a href="./index.html">首页</a>
+              </li>
+              <li><a href="./catalog.html">人物</a></li>
+              <li><a href="./catalog.html">机构</a></li>
+              <li><a href="./catalog.html">会议</a></li>
+              <li><a href="./download.html">文档</a></li>
+              <li><a href="./catalog.html">条令法规</a></li>
+              <li><a href="./catalog.html">军事译文</a></li>
+              <li><a href="./download.html">防务期刊</a></li>
+              <li><a href="./download.html">纸质材料</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- 网站header结束 -->
+
+    <!-- 网站右侧导航开始 -->
+    <div class="navigation display-none">
+      <a href="javascript:" id="toTop">
+        <!-- <i></i> -->
+        回到顶部
+      </a>
+    </div>
+    <!-- 网站右侧导航结束 -->
+
+    <!-- 手机版导航开始 -->
+    <div class="m-header">
+      <div class="m-header-box">
+        <div class="m-logo"><img src="./images/m_logo.png" /></div>
+
+        <div class="m-nav">
+          <ul>
+            <li>
+                <a href="./index.html">首页</a>
+              </li>
+              <li><a href="./catalog.html">人物</a></li>
+              <li><a href="./catalog.html">机构</a></li>
+              <li><a href="./catalog.html">会议</a></li>
+              <li><a href="./download.html">文档</a></li>
+              <li><a href="./catalog.html">条令法规</a></li>
+              <li><a href="./catalog.html">军事译文</a></li>
+              <li><a href="./download.html">防务期刊</a></li>
+              <li><a href="./download.html">纸质材料</a></li>
+          </ul>
+        </div>
+
+        <div class="m-member">
+          <a href="login.html"><i class="iconfont">&#xe6ef;</i></a>
+          <a href="javascript:" id="suspension"
+            ><i class="iconfont">&#xe607;</i></a
+          >
+        </div>
+      </div>
+    </div>
+    <!-- 手机版导航结束 -->
+
+    <!-- banner开始 -->
+    <!-- banner结束 -->
+    <div class="index-banner">
+      <div class="lunbo flex-column-left-center">
+        <div class="lunbo-header width-all divider">
+          <span class="lunbo-header-title">军事译文</span>
+          <span class="sub-count">共<i>9411</i>篇</span>
+          <span class="more"><a href="./catalog.html">·更多</a></span>
+        </div>
+        <div id="lunboimages" class="carousel slide" data-ride="carousel">
+          <!-- 指示符 -->
+          <ul class="carousel-indicators">
+            <li
+              data-target="#lunboimages"
+              data-slide-to="0"
+              class="active"
+            ></li>
+            <li data-target="#lunboimages" data-slide-to="1"></li>
+            <li data-target="#lunboimages" data-slide-to="2"></li>
+          </ul>
+
+          <!-- 轮播图片 -->
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img
+                src="https://static.runoob.com/images/mix/img_fjords_wide.jpg"
+              />
+            </div>
+            <div class="carousel-item">
+              <img
+                src="https://static.runoob.com/images/mix/img_nature_wide.jpg"
+              />
+            </div>
+            <div class="carousel-item">
+              <img
+                src="https://static.runoob.com/images/mix/img_mountains_wide.jpg"
+              />
+            </div>
+          </div>
+
+          <!-- 左右切换按钮 -->
+          <a
+            class="carousel-control-prev"
+            href="#lunboimages"
+            data-slide="prev"
+          >
+            <span class="carousel-control-prev-icon"></span>
+          </a>
+          <a
+            class="carousel-control-next"
+            href="#lunboimages"
+            data-slide="next"
+          >
+            <span class="carousel-control-next-icon"></span>
+          </a>
+        </div>
+        <div class="yiwen flex-center">
+          <ul>
+            <li>
+              <a href="./detail.html"
+                >远程打击:重置防区内与防区外打击力量的平衡</a
+              >
+            </li>
+            <li>
+                <a href="./detail.html">全球首例！我国帮巴铁造三代半战机，有源雷达生产线还一起给</a>
+              </li>
+              <li><a href="./detail.html">俄军宣告开启无人机时代，可惜国外市场已被中国军工抢占</a></li>
+              <li><a href="./detail.html">中国购买苏35是否配预警机杀手？厂家：导弹还没开始生产 </a></li>
+              <li><a href="./detail.html"> 俄军苏57终于掌握运20生产秘诀，只要有钱下饺子不再是梦</a></li>
+              <li>
+                <a href="./detail.html">中俄神默契：高机动米波雷达拱卫陆军，野战防空从此无短板 </a>
+              </li>
+              <li>
+                <a href="./detail.html">起飞降落全靠美国：法国核航母豪迈起航，核心技术直接买不含糊</a>
+              </li>
+              <li><a href="./detail.html">美军王牌驱逐舰的尴尬：导弹要特供，数量有限塞不满弹药库</a></li>
+              <li><a href="./detail.html"> 6倍于红旗16：单车载弹32枚，俄军S350系统火力走向“极端”</a></li>
+              <li><a href="./detail.html">俄军工老本吃不完？S500和S300合体，瞬间又攒出反导系统</a></li>
+              <li><a href="./detail.html">中美俄隐身战机侧弹舱PK：歼20匠心独具，F22显王者之气</a></li>
+              <li>
+                <a href="./detail.html"> 特朗普嫌丑的美军版054B：052D的吨位，摸到“伯克”3的性能 </a>
+              </li>
+            <!-- <li><a>美国首次公布五代机测试投掷核弹视频</a></li>
+            <li><a>韩军首都圈部队进入“2级防疫响应”</a></li>
+            <li><a>驻阿澳军虐杀平民被调查</a></li>
+            <li><a>俄舰驱逐美舰　不惜“使用冲撞”</a></li>
+            <li><a>俄南部军区装备轮式喷火器</a></li>
+            <li><a>埃塞俄比亚局势将走向何方</a></li>
+            <li><a>“IS”武装行动总协调人被伊拉克逮捕</a></li>
+            <li><a>沙特为首多国联军称将对也门胡塞武装展开报复</a></li>
+            <li><a>俄罗斯“喀山”号核潜艇完成导弹试射</a></li> -->
+          </ul>
+        </div>
+      </div>
+      <div class="tiaoling flex-column-left-center">
+        <div class="width-all tiaoling-header divider">
+          <span class="sub-title">条令法规</span>
+          <span class="sub-count">共<i>9411</i>篇</span>
+          <span class="more"><a href="./catalog.html">·更多</a></span>
+        </div>
+        <div class="tiaoling-content flex-center">
+          <ul>
+            <li>
+              <a href="./detail.html"
+                >[HQDA POLICY NOTICE 1-1]Pentagon Parking</a
+              >
+            </li>
+            <li><a>[HQDA POLICY NOTICE 1-1]Pentagon Parking</a></li>
+            <li><a>[HQDA POLICY NOTICE 1-1]Pentagon Parking</a></li>
+            <li><a>[HQDA POLICY NOTICE 1-1]Pentagon Parking</a></li>
+            <li><a>[HQDA POLICY NOTICE 1-1]Pentagon Parking</a></li>
+            <li><a>[HQDA POLICY NOTICE 1-1]Pentagon Parking</a></li>
+            <li><a>[HQDA POLICY NOTICE 1-1]Pentagon Parking</a></li>
+            <li><a>[HQDA POLICY NOTICE 1-1]Pentagon Parking</a></li>
+            <li><a>[HQDA POLICY NOTICE 1-1]Pentagon Parking</a></li>
+            <li><a>[HQDA POLICY NOTICE 1-1]Pentagon Parking</a></li>
+            <li><a>[HQDA POLICY NOTICE 1-1]Pentagon Parking</a></li>
+            <li><a>[HQDA POLICY NOTICE 1-1]Pentagon Parking</a></li>
+            <li><a>[HQDA POLICY NOTICE 1-1]Pentagon Parking</a></li>
+            <li><a>[HQDA POLICY NOTICE 1-1]Pentagon Parking</a></li>
+            <li><a>[HQDA POLICY NOTICE 1-1]Pentagon Parking</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- 防务任务 -->
+    <div class="wrap renwu">
+      <div class="width-all divider header">
+        <span class="sub-title">防务人物</span>
+        <span class="sub-count">共<i>8679</i>人</span>
+        <span class="more"><a href="./catalog.html">·更多</a></span>
+      </div>
+      
+      <div class="renwu-content width-all">
+        <div class="renwu-info-wrap width-all">
+               <div class="renwu-info">
+            <div class="renwu-photo flex-center">
+              <a href="./detail.html"><img class="photo-border" src="./images/andrew.png" /></a>
+            </div>
+            <div class="renwu-info-content">
+              <p class="renwu-info-content-item">
+                <span class="renwu-photo-name">Andrew F. Krepinevich</span>
+              </p>
+              <p class="renwu-info-content-item">
+                <span class="renwu-photo-label">国家/地区:</span>美国
+              </p>
+              <p class="renwu-info-content-item">
+                <span class="renwu-photo-label">职能领域:</span>陆地 国家安全
+                研究职能 职能评估
+              </p>
+              <p class="renwu-info-content-item">
+                <span class="renwu-photo-label"
+                  >人员类别:退役人员,防务研究员</span
+                >
+              </p>
+              <p class="renwu-info-content-item">
+                <span class="renwu-photo-label">人物简介:</span
+                >A West Point graduate, Krepinevich spent 21 years as an officer in the U.S. Army, serving on the personal staff of three Defense Secretaries and in the Office of Net Assessment, retiring in the rank of lieutenant colonel.[1] While in the army, Krepinevich received an M.P.A. and a Ph.D. from Harvard University and published an influential book, The Army and Vietnam, in which he argued that the United States could have won the Vietnam War had the Army adopted a small-unit pacification strategy in South Vietnam's villages, rather than conducting search and destroy operations in remote jungles.[2] While working for the Office of Net Assessment in 1992, Krepinevich authored "The Military-Technical Revolution: A Preliminary Assessment," an influential document in the development of thinking about the "Revolution in Military Affairs."
+              </p>
+            </div>
+          </div>
+          <div class="renwu-info">
+            <div class="renwu-photo flex-center">
+              <a href="./detail.html"><img class="photo-border" src="./images/qiaozhi.png" /></a>
+            </div>
+            <div class="renwu-info-content">
+              <p class="renwu-info-content-item">
+                <span class="renwu-photo-name">George Frost Kennan</span>
+              </p>
+              <p class="renwu-info-content-item">
+                <span class="renwu-photo-label">国家/地区:</span>美国
+              </p>
+              <p class="renwu-info-content-item">
+                <span class="renwu-photo-label">职能领域:</span>
+                对外关系 发展战略 职能评估 
+              </p>
+              <p class="renwu-info-content-item">
+                <span class="renwu-photo-label"
+                  >人员类别:退役人员,防务研究员</span
+                >
+              </p>
+              <p class="renwu-info-content-item">
+                <span class="renwu-photo-label">人物简介:</span
+                >George Frost Kennan (February 16, 1904 – March 17, 2005) was an American diplomat and historian. He was best known as an advocate of a policy of containment of Soviet expansion during the Cold War. He lectured widely and wrote scholarly histories of the relations between the USSR and the United States. He was also one of the group of foreign policy elders known as "The Wise Men".
+
+                During the late 1940s, his writings inspired the Truman Doctrine and the U.S. foreign policy of "containing" the Soviet Union. His "Long Telegram" from Moscow during 1946 and the subsequent 1947 article The Sources of Soviet Conduct argued that the Soviet regime was inherently
+              </p>
+            </div>
+          </div>
+       
+        </div>
+        <div class="photo-border width-all">
+          <!-- <marquee
+            id="affiche"
+            align="left"
+            behavior="scroll"
+            bgcolor="#FFf"
+            direction="left"
+            height="300"
+            width="100%"
+            hspace="50"
+            vspace="20"
+            loop="-1"
+            scrollamount="10"
+            scrolldelay="100"
+            onMouseOut="this.start()"
+            onMouseOver="this.stop()"
+          > -->
+          <div
+            class="marquee-item-wrap flex-center width-all"
+            style="height: 300px; width: 100%; overflow: hidden"
+          >
+            <div class="marquee-item flex-column-left-center">
+              <a href="./detail.html"><img class="photo-border" src="./images/lubiao.png" /></a
+              <p class="width-all marqueen-item-p">Rubio</p>
+            </div>
+            <div class="marquee-item">
+                <a href="./detail.html"><img class="photo-border" src="./images/pengbeiao.png" /></a>
+              <p class="width-all marqueen-item-p">Pompeo</p>
+            </div>
+            <div class="marquee-item">
+                <a href="./detail.html"><img class="photo-border" src="./images/kedun.png" /></a>
+              <p class="width-all marqueen-item-p">Tom Cotton</p>
+            </div>
+            <div class="marquee-item">
+                <a href="./detail.html"><img class="photo-border" src="./images/baokaoshi.png" /></a>
+              <p class="width-all marqueen-item-p">Max Baucus</p>
+            </div>
+            <div class="marquee-item">
+                <a href="./detail.html"><img class="photo-border" src="./images/qiaoshi.png" /></a>
+              <p class="width-all marqueen-item-p">
+                Josh Hawley</p>
+            </div>
+            <div class="marquee-item">
+                <a href="./detail.html"><img class="photo-border" src="./images/qiaozhi.png" /></a>
+              <p class="width-all marqueen-item-p">George Frost Kennan</p>
+            </div>
+            <!-- <div class="marquee-item">
+              <img
+                class="photo-border"
+            
+                src="./images/andrew.png"
+              />
+              <p class="width-all marqueen-item-p">Andrew</p>
+            </div> -->
+          </div>
+          <!-- </marquee> -->
+        </div>
+      </div>
+    </div>
+    <div class="jigou-wrap wrap">
+      <div class="width-all divider header">
+        <span class="sub-title">机构</span>
+        <span class="sub-count">共<i>1000</i>个</span>
+        <span class="more"><a href="./catalog.html">·更多</a></span>
+      </div>
+      <div class="jigou-content width-all">
+        <ul>
+          <li><a href="./detail.html">美国国防部</a></li>
+          <li><a href="./detail.html">美国国防部</a></li>
+          <li><a href="./detail.html">美国国防部</a></li>
+          <li><a href="./detail.html">美国国防部</a></li>
+          <li><a href="./detail.html">美国国防部</a></li>
+          <li><a href="./detail.html">美国国防部</a></li>
+          <li><a href="./detail.html">美国国防部</a></li>
+          <li><a href="./detail.html">美国国防部</a></li>
+          <li><a href="./detail.html">美国国防部</a></li>
+          <li><a href="./detail.html">美国国防部</a></li>
+          <li><a href="./detail.html">美国国防部</a></li>
+          <li><a href="./detail.html">美国国防部</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="jigou-wrap wrap">
+      <div class="width-all divider header">
+        <span class="sub-title">会议</span>
+        <span class="sub-count">共<i>1000</i>个</span>
+        <span class="more"><a href="./catalog.html">·更多</a></span>
+      </div>
+      <div class="jigou-content width-all">
+        <ul>
+          <li><a href="./detail.html">美台防务工业会议</a></li>
+          <li><a href="./detail.html">美台防务工业会议</a></li>
+          <li><a href="./detail.html">美台防务工业会议</a></li>
+          <li><a href="./detail.html">美台防务工业会议</a></li>
+          <li><a href="./detail.html">美台防务工业会议</a></li>
+          <li><a href="./detail.html">美台防务工业会议</a></li>
+          <li><a href="./detail.html">美台防务工业会议</a></li>
+          <li><a href="./detail.html">美台防务工业会议</a></li>
+          <li><a href="./detail.html">美台防务工业会议</a></li>
+          <li><a href="./detail.html">美台防务工业会议</a></li>
+          <li><a href="./detail.html">美台防务工业会议</a></li>
+          <li><a href="./detail.html">美台防务工业会议</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="jigou-wrap wrap">
+      <div class="width-all divider header">
+        <span class="sub-title">文档</span>
+        <span class="sub-count">共<i>1000</i>个</span>
+        <span class="more"><a href="./catalog.html">·更多</a></span>
+      </div>
+      <div class="jigou-content width-all">
+        <ul>
+          <li>
+            <a href="./detail.html">全球首例！我国帮巴铁造三代半战机，有源雷达生产线还一起给</a>
+          </li>
+          <li><a href="./detail.html">俄军宣告开启无人机时代，可惜国外市场已被中国军工抢占</a></li>
+          <li><a href="./detail.html">中国购买苏35是否配预警机杀手？厂家：导弹还没开始生产 </a></li>
+          <li><a href="./detail.html"> 俄军苏57终于掌握运20生产秘诀，只要有钱下饺子不再是梦</a></li>
+          <li>
+            <a href="./detail.html">中俄神默契：高机动米波雷达拱卫陆军，野战防空从此无短板 </a>
+          </li>
+          <li>
+            <a href="./detail.html">起飞降落全靠美国：法国核航母豪迈起航，核心技术直接买不含糊</a>
+          </li>
+          <li><a href="./detail.html">美军王牌驱逐舰的尴尬：导弹要特供，数量有限塞不满弹药库</a></li>
+          <li><a href="./detail.html"> 6倍于红旗16：单车载弹32枚，俄军S350系统火力走向“极端”</a></li>
+          <li><a href="./detail.html">俄军工老本吃不完？S500和S300合体，瞬间又攒出反导系统</a></li>
+          <li><a href="./detail.html">中美俄隐身战机侧弹舱PK：歼20匠心独具，F22显王者之气</a></li>
+          <li>
+            <a href="./detail.html"> 特朗普嫌丑的美军版054B：052D的吨位，摸到“伯克”3的性能 </a>
+          </li>
+          <li><a href="./detail.html"">
+            中俄联手垄断高超音速武器？美军反击，花数百亿上马5大项目
+          </a></li>
+          
+        </ul>
+      </div>
+    </div>
+    <div class="jigou-wrap wrap">
+      <div class="width-all divider header">
+        <span class="sub-title">期刊</span>
+        <span class="sub-count">共<i>1000</i>个</span>
+        <span class="more"><a href="./catalog.html">·更多</a></span>
+      </div>
+      <div class="jigou-content width-all">
+        <ul>
+          <li><a href="./download.html">美国首次公布五代机测试投掷核弹视频</a></li>
+          <li><a href="./download.html">韩军首都圈部队进入“2级防疫响应”</a></li>
+          <li><a href="./download.html">驻阿澳军虐杀平民被调查</a></li>
+          <li><a href="./download.html">俄舰驱逐美舰　不惜“使用冲撞”</a></li>
+          <li><a href="./download.html">俄南部军区装备轮式喷火器</a></li>
+          <li><a href="./download.html">埃塞俄比亚局势将走向何方</a></li>
+          <li><a href="./download.html">“IS”武装行动总协调人被伊拉克逮捕</a></li>
+          <li><a href="./download.html">沙特为首多国联军称将对也门胡塞武装展开报复</a></li>
+          <li><a href="./download.html">俄罗斯“喀山”号核潜艇完成导弹试射</a></li>
+          <li><a href="./download.html">俄罗斯“喀山”号核潜艇完成导弹试射</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="wrap clearfix flex-center-start">
+        <div class="footerli rightBroderb1b3b4">
+          <h3>关于我们</h3>
+          <ul>
+            <li><a href="#">资料检索数据库</a></li>
+            <!-- <li><a href="#">研发一部</a></li>
+                <li><a href="#">研发二部</a></li>
+                <li><a href="#">研发三部</a></li> -->
+          </ul>
+        </div>
+        <div class="footerli rightBroderb1b3b4">
+          <h3>相关链接</h3>
+          <ul>
+            <li>
+              <a href="http://www.chinamil.com.cn" target="_blank">中国军网</a>
+            </li>
+            <li><a href="http://www.gfdy.gov.cn">国防动员网</a></li>
+            <li><a href="http://www.gov.cn/">中国政府网</a></li>
+            <li><a href="http://www.fmprc.gov.cn/">外交部</a></li>
+            <li><a href="http://www.miit.gov.cn/">工业和信息化部</a></li>
+            <li><a href="http://www.gwytb.gov.cn/">国台办</a></li>
+            <li><a href="http://www.people.com.cn/">人民网</a></li>
+          </ul>
+        </div>
+        <div class="footerqrcode rightBroderb1b3b4">
+          <h3>联系我们</h3>
+          <p>地址：郑州市中原区桐柏路与陇海路升龙金中环B座36层</p>
+          <p>电话：0371-55019103 邮箱：jx@jx-lab.com</p>
+          <!-- <img src="./images/qrcode.png" /> -->
+        </div>
+        <div class="footerqrcode">
+          <h3>版权所有</h3>
+          <p>© 版权所有2012-2020 郑州众合景轩 All rights reserved</p>
+          <!-- <img src="./images/qrcode.png" /> -->
+        </div>
+      </div>
+
+      <div class="footer-version">
+        <!-- <p>© 版权所有2012-2020 郑州众合景轩 All rights reserved</p> -->
+        <!-- <p>地址：郑州市中原区桐柏路与陇海路升龙金中环B座36层</p>
+        <p>电话：0371-55019103 邮箱：jx@jx-lab.com</p> -->
+      </div>
+    </div>
+    <script src="./js/swiper.min.js"></script>
+    <script src="https://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="./js/js.js"></script>
+  </body>
+  <script></script>
+</html>
